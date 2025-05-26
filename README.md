@@ -41,8 +41,8 @@ The pipeline follows this workflow:
 1. **Clone the repository**:
 
 ```bash
-git clone <your-repository-url>
-cd knowledge-graph-pipeline
+git clone https://github.com/fabischkamau/Knowledge-Graphs-Unstructured.git
+cd knowledge-graph-unstructured
 ```
 
 2. **Create a virtual environment**:
