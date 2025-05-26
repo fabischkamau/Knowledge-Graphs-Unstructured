@@ -1,0 +1,101 @@
+# General Knowledge Graph Pipeline Configuration
+
+# Logging configuration
+log_level: "INFO" # DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_to_file: true
+log_directory: "./logs"
+
+# Input and output directories
+input_directory: "./input"
+output_directory: "./output"
+cache_directory: "./cache"
+state_file: "./pipeline_state.pkl"
+
+# Document processing configuration
+supported_formats:
+  - "txt"
+  - "pdf"
+  - "docx"
+  - "md"
+
+# LLM Configuration
+llm:
+  provider: "openai" # "anthropic" or "openai"
+  model: "gpt-4o-mini" # or "gpt-4" for OpenAI
+  api_key: "${OPENAI_API_KEY}" # Replace with OPENAI_API_KEY or ANTHROPIC_API_KEY API key
+  temperature: 0
+
+# Embedding Configuration (optional - set enable_embeddings to false if not needed)
+embeddings:
+  enable_embeddings: false
+  provider: "openai" # "openai" or "sentence-transformers"
+  model: "text-embedding-ada-002" # OpenAI model or sentence-transformers model name
+  api_key: "${OPENAI_API_KEY}" # Only needed for OpenAI embeddings
+  dimensions: 1536 # Embedding dimensions (1536 for OpenAI ada-002, varies for others)
+  chunk_embeddings: false # Whether to embed text chunks
+  entity_embeddings: false # Whether to embed entity descriptions
+
+# Text processing configuration
+chunk_size: 1500
+chunk_overlap: 500
+max_workers: 2 # Number of parallel workers for processing chunks
+
+# Entity and relationship types (customize these for your domain)
+allowed_entity_types:
+  - "Person"
+  - "Organization"
+  - "Location"
+  - "Event"
+  - "Concept"
+  - "Document"
+  - "Technology"
+  - "Product"
+  - "Topic"
+
+allowed_relationship_types:
+  # General relationships
+  - "MENTIONS"
+  - "RELATED_TO"
+  - "PART_OF"
+  - "CONTAINS"
+  - "BELONGS_TO"
+
+  # Person relationships
+  - "WORKS_FOR"
+  - "KNOWS"
+  - "COLLABORATES_WITH"
+  - "LEADS"
+  - "REPORTS_TO"
+
+  # Event relationships
+  - "PARTICIPATES_IN"
+  - "OCCURS_IN"
+  - "CAUSES"
+  - "FOLLOWS"
+  - "PRECEDES"
+
+  # Location relationships
+  - "LOCATED_IN"
+  - "NEAR"
+  - "TRAVELS_TO"
+
+  # Document relationships
+  - "AUTHORED_BY"
+  - "REFERENCES"
+  - "CITES"
+  - "DISCUSSES"
+
+# Domain-specific extraction guidance (optional)
+extraction_context:
+  domain: "general" # e.g., "business", "academic", "medical", "legal", "technical"
+  focus_areas: [] # e.g., ["financial data", "research findings", "legal cases"]
+
+# Neo4j configuration (optional - set auto_import_neo4j to false if you don't want automatic import)
+neo4j:
+  uri: "bolt://localhost:7687"
+  username: "neo4j"
+  password: "${NEO4J_PASSWORD}"
+
+# Pipeline behavior
+auto_import_neo4j: true # Set to true to automatically import to Neo4j
+progress_logging: true # Enable detailed progress logging

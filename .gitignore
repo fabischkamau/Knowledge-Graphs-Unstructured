@@ -1,0 +1,15 @@
+# Ignore output, cache, logs, and input directories
+output/
+cache/
+logs/
+input/
+
+# Ignore pipeline state file
+pipeline_state.pkl
+
+# Ignore environment files
+.env
+
+# Ignore Python virtual environments
+.venv/
+venv/

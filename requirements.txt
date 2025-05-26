@@ -1,0 +1,16 @@
+langchain
+langchain_anthropic
+langchain_openai
+langchain_text_splitters
+langchain_community
+python-dotenv
+networkx
+neo4j
+colorlog
+pyyaml
+fitz
+docx
+tqdm
+sentence_transformers
+python-docx
+pymupdf
